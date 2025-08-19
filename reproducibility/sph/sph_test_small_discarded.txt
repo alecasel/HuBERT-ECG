@@ -1,0 +1,3 @@
+# Soglia minima: 2500 campioni
+# Totale input: 500 | Tenuti: 500 | Scartati: 0
+
