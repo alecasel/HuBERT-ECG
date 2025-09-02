@@ -3,17 +3,17 @@ $PY   = "C:\Users\Alessandro\Desktop\workspace\ecg-online-sources\.venv\Scripts\
 $PROJ = "C:\Users\Alessandro\Desktop\workspace\ecg-online-sources\hubert-from-git\HuBERT-ECG"
 
 # CSV assoluti (input) — ADATTA se i nomi differiscono
-$CSV_TRAIN_ABS = Join-Path $PROJ "reproducibility\sph\sph_train_abs.csv"
-$CSV_VAL_ABS   = Join-Path $PROJ "reproducibility\sph\sph_val_abs.csv"
-$CSV_TEST_ABS  = Join-Path $PROJ "reproducibility\sph\sph_test_abs.csv"
+$CSV_TRAIN_ABS = Join-Path $PROJ "reproducibility\samitrop\train_my_mapped.csv"
+$CSV_VAL_ABS   = Join-Path $PROJ "reproducibility\samitrop\val_my_mapped.csv"
+$CSV_TEST_ABS  = Join-Path $PROJ "reproducibility\samitrop\test_my_mapped.csv"
 
 # CSV “names” (output) con SOLO il nome file (es. A00001.npy)
-$CSV_TRAIN_NAMES = Join-Path $PROJ "reproducibility\sph\sph_train_names.csv"
-$CSV_VAL_NAMES   = Join-Path $PROJ "reproducibility\sph\sph_val_names.csv"
-$CSV_TEST_NAMES  = Join-Path $PROJ "reproducibility\sph\sph_test_names.csv"
+$CSV_TRAIN_NAMES = Join-Path $PROJ "reproducibility\samitrop\train_names.csv"
+$CSV_VAL_NAMES   = Join-Path $PROJ "reproducibility\samitrop\val_names.csv"
+$CSV_TEST_NAMES  = Join-Path $PROJ "reproducibility\samitrop\test_names.csv"
 
 # Directory dei descrittori (output dello Step 1)
-$FEAT_DIR = "F:\records\records_npy"
+$FEAT_DIR = "F:\SaMi-Trop dataset\records_npy"
 
 # Clustering params
 $N_CLUSTERS = 100
@@ -39,7 +39,7 @@ mk(r"$CSV_TEST_ABS",  r"$CSV_TEST_NAMES")
 $env:WANDB_MODE = "disabled"
 
 # 3) Clustering (usa i descrittori in $FEAT_DIR) — salva un .pkl nel $PROJ
-& $PY code/cluster.py `
+& $PY code2/cluster.py `
     $CSV_TRAIN_NAMES `
     $FEAT_DIR `
     --cluster `

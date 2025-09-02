@@ -2,13 +2,13 @@
 $PY   = "C:\Users\Alessandro\Desktop\workspace\ecg-online-sources\.venv\Scripts\python.exe"
 $PROJ = "C:\Users\Alessandro\Desktop\workspace\ecg-online-sources\hubert-from-git\HuBERT-ECG"
 
-$CSV_TRAIN_SMALL = Join-Path $PROJ "reproducibility\sph\sph_train_small.csv"
-$CSV_VAL_SMALL   = Join-Path $PROJ "reproducibility\sph\sph_val_small.csv"
+$CSV_TRAIN_SMALL = Join-Path $PROJ "reproducibility\samitrop\train_names.csv"
+$CSV_VAL_SMALL   = Join-Path $PROJ "reproducibility\samitrop\val_names.csv"
 
 $KMEANS_TXT = Join-Path $PROJ "kmeans.txt"   # va benissimo quello addestrato su tutto
 
 # CARTELLE DATI
-$FEAT_DIR = "F:\records\records_npy"       # <-- features 93×29 (CORRETTO)
+$FEAT_DIR = "F:\SaMi-Trop dataset\records_npy"       # <-- features 93×29 (CORRETTO)
 # i RAW sono già presi da pretrain.py (ecg_dir_path = F:\records\records_npy_raw)
 
 # PARAMETRI “CPU”
@@ -23,7 +23,7 @@ $TRAINING_STEPS = 1000    # es. 1k step; aumenta a piacere
 $env:WANDB_MODE = "disabled"
 Set-Location $PROJ
 
-& $PY code\pretrain.py 1 `
+& $PY code2\pretrain.py 1 `
   $CSV_TRAIN_SMALL `
   $CSV_VAL_SMALL `
   $VAL_INTERVAL `
@@ -35,4 +35,5 @@ Set-Location $PROJ
   $FEAT_DIR `
   $FEAT_DIR `
   $VOCAB_SIZE `
-  --training_steps $TRAINING_STEPS
+  --training_steps $TRAINING_STEPS `
+  --ecg_dir_path "F:\SaMi-Trop dataset\records_npy_raw"

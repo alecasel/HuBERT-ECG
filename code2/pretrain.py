@@ -22,7 +22,7 @@ EPS = 1E-09
 MINIMAL_IMPROVEMENT = 1e-3
 DROPOUT_DYNAMIC_REG_FACTOR = 0.05
 
-SELF_SUPERVISED_MODEL_CKPT_PATH = r"F:\models\checkpoints\"
+SELF_SUPERVISED_MODEL_CKPT_PATH = r"F:\models\checkpoints_samitrop"
 
 
 def dynamic_regularizer(optimizer, model, penalty):
@@ -232,7 +232,7 @@ def train(args):
 
     train_set = ECGDataset(
         path_to_dataset_csv=args.path_to_dataset_csv_train,
-        ecg_dir_path=r"F:\records\records_npy_raw",
+        ecg_dir_path=args.ecg_dir_path,
         downsampling_factor=args.downsampling_factor,
         features_path=args.train_features_path,
         kmeans_path=args.kmeans_path,
@@ -240,7 +240,7 @@ def train(args):
 
     val_set = ECGDataset(
         path_to_dataset_csv=args.path_to_dataset_csv_val,
-        ecg_dir_path=r"F:\records\records_npy_raw",
+        ecg_dir_path=args.ecg_dir_path,
         features_path=args.val_features_path,
         downsampling_factor=args.downsampling_factor,
         kmeans_path=args.kmeans_path,
@@ -681,6 +681,14 @@ if __name__ == "__main__":
         type=str,
         default=None
     )
+
+    parser.add_argument(
+        "--ecg_dir_path",
+        help="[OPT] Path ai RAW .npy",
+        type=str,
+        default=r"F:\records\records_npy_raw"
+    )
+
 
     args = parser.parse_args()
 
